@@ -32,11 +32,10 @@ npm install      # só para desenvolver: traz o web-ext
 npm run setup    # copia a ponte para ~/.kamurafox e registra no Firefox e no Claude Code
 ```
 
-Depois carregue a extensão no Firefox:
+Depois instale a extensão no Firefox:
 
-- **Para testar agora:** abra `about:debugging#/runtime/this-firefox`, clique em "Carregar extensão temporária" e escolha `extension/manifest.json`. Ela some quando o Firefox fecha.
-- **Firefox separado só para o Claude:** `npm run firefox` abre um Firefox com perfil próprio (`~/.kamurafox/profile`) e a extensão já carregada. Os logins feitos ali ficam guardados.
-- **Para ficar de vez:** a extensão precisa ser assinada pela Mozilla (ainda não foi).
+- **Do jeito normal:** baixe o `kamurafox-0.1.0.xpi` em [Releases](https://github.com/GabrielKamura/kamurafox/releases/latest) e abra o arquivo no Firefox. Ele é assinado pela Mozilla e fica instalado de vez.
+- **Para mexer no código:** `npm run firefox` abre um Firefox com perfil próprio (`~/.kamurafox/profile`) e a extensão carregada direto da pasta. Outra opção é `about:debugging#/runtime/this-firefox`, "Carregar extensão temporária", escolhendo `extension/manifest.json`.
 
 Abra uma sessão nova do Claude Code: as ferramentas aparecem como `mcp__kamurafox__*`.
 
@@ -76,6 +75,7 @@ O Firefox não dá a extensões o depurador que o Chrome dá, então mouse e tec
 npm test        # teste de ponta a ponta num Firefox sem janela, com perfil descartável
 npm run lint    # validador da Mozilla
 npm run build   # gera o .zip em dist/
+npm run sign    # assina na Mozilla (precisa da chave em .amo/credenciais.env)
 npm run remove  # desfaz o npm run setup
 ```
 

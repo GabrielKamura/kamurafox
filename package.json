@@ -10,7 +10,7 @@
     "lint": "web-ext lint --source-dir extension",
     "build": "web-ext build --source-dir extension --artifacts-dir dist --overwrite-dest",
     "test": "node test/e2e.mjs",
-    "sign": "sh -c '. ./.amo/credenciais.env && web-ext sign --source-dir extension --artifacts-dir dist --channel unlisted --api-key \"$AMO_JWT_ISSUER\" --api-secret \"$AMO_JWT_SECRET\"'"
+    "sign": "sh -c 'set -a; . ./.amo/credenciais.env; set +a; WEB_EXT_API_KEY=\"$AMO_JWT_ISSUER\" WEB_EXT_API_SECRET=\"$AMO_JWT_SECRET\" web-ext sign --source-dir extension --artifacts-dir dist --channel unlisted'"
   },
   "devDependencies": {
     "web-ext": "^10.7.0"
