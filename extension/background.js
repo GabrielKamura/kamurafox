@@ -342,10 +342,10 @@ async function act(tab, command, payload) {
   return { text: lines.join("\n") };
 }
 
-async function capture(tabId, region) {
+async function capture(tabId, region, keepMark) {
   let view = null;
   try {
-    view = await callContent(tabId, "beforeShot", {}, { timeout: 4000 });
+    view = await callContent(tabId, "beforeShot", { keep: !!keepMark }, { timeout: 4000 });
   } catch {}
   const options = { format: "jpeg", quality: 80, scale: 1 };
   let label = view ? `Screenshot of the viewport, ${view.width}x${view.height} CSS pixels. Click coordinates use this same scale.` : "Screenshot of the viewport.";
@@ -478,7 +478,7 @@ const TOOLS = {
   async computer(args) {
     const tab = await needTab(args);
     const action = String(args.action || "");
-    if (action === "screenshot") return capture(tab.id);
+    if (action === "screenshot") return capture(tab.id, null, args.show_mark);
     if (action === "zoom") {
       if (!Array.isArray(args.region) || args.region.length !== 4) throw new Error("zoom needs region: [x0, y0, x1, y1].");
       return capture(tab.id, args.region);

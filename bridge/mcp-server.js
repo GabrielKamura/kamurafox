@@ -94,6 +94,7 @@ const TOOLS = [
         scroll_amount: { type: "number", description: "Wheel ticks of 100 px each, default 3." },
         duration: { type: "number", description: "Seconds for wait, at most 30." },
         region: { type: "array", items: { type: "number" }, minItems: 4, maxItems: 4, description: "[x0, y0, x1, y1] of the viewport for zoom." },
+        show_mark: { type: "boolean", description: "For screenshot: keep Kamurafox's own frame and sticker in the picture. They are hidden by default." },
       },
       required: ["tabId", "action"],
     },

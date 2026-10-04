@@ -6,6 +6,11 @@ Deixa o Claude Code dirigir o Firefox: abrir aba, navegar, ler a página, clicar
 
 Projeto não oficial. Não é da Anthropic nem da Mozilla.
 
+<p>
+  <img src="docs/img/aba-dirigida.jpg" width="620" alt="Página de exemplo preenchida pelo Claude Code, com a moldura preta e amarela e a figurinha de aviso">
+  <img src="docs/img/popup-pt_BR.png" width="210" alt="Popup do Kamurafox: ponte ligada, abas sob controle e o botão Pausar controle">
+</p>
+
 ## Como funciona
 
 ```
@@ -42,7 +47,7 @@ Abra uma sessão nova do Claude Code: as ferramentas aparecem como `mcp__kamuraf
 | `tabs_context`, `tabs_create`, `tabs_adopt`, `tabs_close` | Lista, abre, assume e fecha abas |
 | `navigate` | Vai para uma URL, volta, avança ou recarrega |
 | `read_page`, `get_page_text`, `find` | Lê a estrutura da página, o texto, ou procura elementos por palavra-chave |
-| `computer` | Print, zoom, clique, hover, digitar, teclas, rolagem, espera |
+| `computer` | Print (com `show_mark` a moldura aparece na foto), zoom, clique, hover, digitar, teclas, rolagem, espera |
 | `form_input` | Preenche campo, caixa de seleção ou lista |
 | `javascript_tool` | Roda JavaScript na página |
 | `read_console_messages`, `read_network_requests` | Console e rede da aba |

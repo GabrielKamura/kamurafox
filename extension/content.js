@@ -893,8 +893,8 @@
       return {};
     },
     drain: () => ({ entries: early.drain() }),
-    async beforeShot() {
-      if (frame) frame.host.style.display = "none";
+    async beforeShot(message) {
+      if (frame && !message.keep) frame.host.style.display = "none";
       await new Promise((resolve) => {
         requestAnimationFrame(() => resolve());
         setTimeout(resolve, 80);
