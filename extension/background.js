@@ -225,6 +225,7 @@ function nextLoad(tabId, timeout = 25000) {
 async function go(tabId, where) {
   const moves = { back: () => browser.tabs.goBack(tabId), forward: () => browser.tabs.goForward(tabId), reload: () => browser.tabs.reload(tabId) };
   const move = Object.hasOwn(moves, where) ? moves[where] : ((url) => () => browser.tabs.update(tabId, { url }))(normalizeUrl(where));
+  await collectConsole(tabId);
   const loaded = nextLoad(tabId);
   await move();
   const outcome = await loaded;
@@ -262,6 +263,16 @@ async function settle(tabId) {
 }
 
 // ------------------------------------------------------------ content script
+
+// Pulls what the page logged but has not sent yet. Called before leaving a page, so nothing is lost with it.
+async function collectConsole(tabId) {
+  const entry = controlled.get(tabId);
+  if (!entry) return;
+  try {
+    const pending = await withTimeout(browser.tabs.sendMessage(tabId, { kfx: "drain" }, { frameId: 0 }), 1500, "drain");
+    if (pending && pending.entries) for (const item of pending.entries) pushCapped(entry.console, item);
+  } catch {}
+}
 
 async function inject(tabId) {
   await browser.tabs.executeScript(tabId, { file: "/early.js", runAt: "document_start", frameId: 0 });
@@ -516,8 +527,7 @@ const TOOLS = {
   async read_console_messages(args) {
     const tab = await needTab(args);
     const entry = controlled.get(tab.id);
-    const pending = await callContent(tab.id, "drain", {}, { timeout: 4000 }).catch(() => null);
-    if (pending && pending.entries) for (const item of pending.entries) pushCapped(entry.console, item);
+    await collectConsole(tab.id);
     const pattern = regex(args.pattern, "pattern");
     let list = entry.console;
     if (args.onlyErrors) list = list.filter((item) => item.level === "error");

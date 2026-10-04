@@ -1,6 +1,11 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 96">
-  <rect width="96" height="96" rx="22" fill="#221a16"/>
-  <!-- a pointer that is also a fox tail: the white tip is what clicks -->
-  <path d="M26 18 74 44 52 52 44 76Z" fill="#d97757" stroke="#221a16" stroke-width="2" stroke-linejoin="round"/>
-  <path d="M26 18 45.2 28.4 34 42.4Z" fill="#fbf3e9"/>
+  <!-- raposa de cartum no traço da casa: tinta preta grossa, ouro, bochecha rosa -->
+  <path d="M15 5 37 27q11-4 22 0L81 5q7 22 3 38l8 11-17 6Q63 79 48 90 33 79 21 60L4 54l8-11Q8 27 15 5Z" fill="#ffd23f"/>
+  <path d="M19 15 31 28 20 33Q17 24 19 15ZM77 15 65 28l11 5q3-9 1-18Z" fill="#000"/>
+  <path d="M4 54l17 6Q33 79 48 90 63 79 75 60l17-6Q72 49 61 59 48 47 35 59 24 49 4 54Z" fill="#fff"/>
+  <path d="M15 5 37 27q11-4 22 0L81 5q7 22 3 38l8 11-17 6Q63 79 48 90 33 79 21 60L4 54l8-11Q8 27 15 5Z" fill="none" stroke="#000" stroke-width="6" stroke-linejoin="round"/>
+  <path d="M27 43q7-6 13 1-6 5-13-1ZM69 43q-7-6-13 1 6 5 13-1Z"/>
+  <circle cx="24" cy="57" r="4" fill="#ff9eb5"/>
+  <circle cx="72" cy="57" r="4" fill="#ff9eb5"/>
+  <path d="M42 68h12l-6 7Z" stroke="#000" stroke-width="2.5" stroke-linejoin="round"/>
 </svg>

@@ -66,6 +66,18 @@
   }
 
   // ---------------------------------------------------------------- indicator
+  // The house look (docs/design.md): thick black ink, gold, a tilted sticker.
+  // Styled through the CSSOM only, so a strict page CSP cannot strip it, and with
+  // system fonts only, because nothing may be downloaded into someone else's page.
+
+  const LOOK = {
+    host: "all:initial;position:fixed;inset:0;z-index:2147483647;pointer-events:none;",
+    frame: "position:fixed;inset:0;border:3px solid #000;box-shadow:inset 0 0 0 3px #ffd23f;pointer-events:none;",
+    sticker:
+      "position:fixed;left:16px;bottom:16px;display:flex;align-items:center;gap:7px;padding:5px 12px 5px 9px;border:3px solid #000;border-radius:10px;background:#ffd23f;color:#000;box-shadow:3px 3px 0 #000;transform:rotate(-3deg);font:600 13px/1.2 ui-rounded,'SF Pro Rounded','Arial Rounded MT Bold',system-ui,sans-serif;white-space:nowrap;pointer-events:none;",
+    live: "flex:none;width:9px;height:9px;border:2px solid #000;border-radius:50%;background:#0ca30c;",
+    click: "position:fixed;width:22px;height:22px;margin:-11px 0 0 -11px;border:3px solid #000;border-radius:50%;background:#ffd23f;box-shadow:2px 2px 0 #000;pointer-events:none;",
+  };
 
   let frame = null;
 
@@ -74,42 +86,41 @@
     return el;
   }
 
-  // Styled through the CSSOM only, so a strict page CSP cannot strip it.
   function ensureIndicator() {
     const html = document.documentElement;
     if (!active || !html || html.localName !== "html") return;
     if (frame && frame.host.isConnected) return;
-    const host = css(document.createElement("kamurafox-frame"), "all:initial;position:fixed;inset:0;z-index:2147483647;pointer-events:none;");
+    const host = css(document.createElement("kamurafox-frame"), LOOK.host);
     host.setAttribute("aria-hidden", "true");
     const root = host.attachShadow({ mode: "closed" });
-    root.appendChild(
-      css(
-        document.createElement("div"),
-        "position:fixed;inset:0;border:2px solid #d97757;box-shadow:inset 0 0 0 1px rgba(251,243,233,.55),inset 0 0 22px rgba(217,119,87,.28);pointer-events:none;"
-      )
-    );
-    const tag = css(
-      document.createElement("div"),
-      "position:fixed;left:50%;bottom:10px;transform:translateX(-50%);padding:5px 12px 5px 10px;border-radius:3px 12px 12px 12px;background:#221a16;color:#fbf3e9;font:500 12px/1.3 ui-monospace,Menlo,Consolas,monospace;white-space:nowrap;pointer-events:none;box-shadow:0 2px 10px rgba(0,0,0,.3);"
-    );
-    tag.append(css(document.createElement("span"), "display:inline-block;width:7px;height:7px;margin-right:7px;border-radius:50%;background:#d97757;vertical-align:1px;"), browser.i18n.getMessage("indicator"));
-    root.appendChild(tag);
+    root.appendChild(css(document.createElement("div"), LOOK.frame));
+    const sticker = css(document.createElement("div"), LOOK.sticker);
+    sticker.append(css(document.createElement("span"), LOOK.live), browser.i18n.getMessage("indicator"));
+    root.appendChild(sticker);
     html.appendChild(host);
     frame = { host, root };
   }
 
+  // The "plop" where the agent clicked: a gold dot that bounces in and fades.
   function ripple(x, y) {
     ensureIndicator();
     if (!frame) return;
-    const ring = css(
-      document.createElement("div"),
-      `position:fixed;left:${x - 11}px;top:${y - 11}px;width:22px;height:22px;border-radius:50%;border:2px solid #d97757;background:rgba(217,119,87,.25);pointer-events:none;`
-    );
-    frame.root.appendChild(ring);
+    const dot = css(document.createElement("div"), `${LOOK.click}left:${x}px;top:${y}px;`);
+    frame.root.appendChild(dot);
     try {
-      ring.animate([{ transform: "scale(.4)", opacity: 1 }, { transform: "scale(1.7)", opacity: 0 }], { duration: 420, easing: "ease-out" });
+      if (!matchMedia("(prefers-reduced-motion: reduce)").matches) {
+        dot.animate(
+          [
+            { transform: "scale(.3)", opacity: 1 },
+            { transform: "scale(1.15)", opacity: 1, offset: 0.45 },
+            { transform: "scale(1)", opacity: 1, offset: 0.7 },
+            { transform: "scale(1)", opacity: 0 },
+          ],
+          { duration: 520, easing: "cubic-bezier(.34,1.56,.64,1)" }
+        );
+      }
     } catch {}
-    setTimeout(() => ring.remove(), 400);
+    setTimeout(() => dot.remove(), 500);
   }
 
   // ------------------------------------------------- elements, roles and names

@@ -37,7 +37,7 @@
     if (state === "off") return;
     backlog.push({ level, text: String(text).slice(0, 2000) });
     if (backlog.length > 500) backlog.shift();
-    if (state === "on" && !timer) timer = setTimeout(flush, 250);
+    if (state === "on" && !timer) timer = setTimeout(flush, 100);
   }
 
   function drain() {
@@ -57,9 +57,15 @@
     record("error", `Unhandled promise rejection: ${show(event.reason)}`);
   }
 
+  // Whatever is still unsent goes out when the page is leaving.
+  function onLeave() {
+    if (state === "on") flush();
+  }
+
   function stop() {
     state = "off";
     drain();
+    window.removeEventListener("pagehide", onLeave);
     for (const level of Object.keys(originals)) page.console[level] = originals[level];
     window.removeEventListener("error", onError, true);
     window.removeEventListener("unhandledrejection", onRejection);
@@ -79,6 +85,7 @@
   }
   window.addEventListener("error", onError, true);
   window.addEventListener("unhandledrejection", onRejection);
+  window.addEventListener("pagehide", onLeave);
 
   globalThis.__kamurafoxEarly = { record, drain, stop, show };
 

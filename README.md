@@ -1,3 +1,5 @@
+<img src="extension/icons/kamurafox.svg" width="96" alt="">
+
 # Kamurafox
 
 Deixa o Claude Code dirigir o Firefox: abrir aba, navegar, ler a página, clicar, digitar, tirar print, ver o console e a rede. É o que a extensão Claude in Chrome faz no Chrome, feito do zero para o Firefox.
@@ -48,7 +50,7 @@ Abra uma sessão nova do Claude Code: as ferramentas aparecem como `mcp__kamuraf
 
 ## Segurança
 
-- O Claude só age nas abas que ele abriu, ou nas que você mandou assumir. Elas ficam num grupo "Claude" e ganham uma moldura laranja.
+- O Claude só age nas abas que ele abriu, ou nas que você mandou assumir. Elas ficam num grupo "Claude" e ganham uma moldura preta e amarela com o aviso "Claude Code está dirigindo esta aba".
 - Enquanto o Claude tem alguma aba, um script mínimo (`early.js`) roda no começo de cada página das outras abas só para perguntar "esta aba é controlada?". Se não for, ele se desfaz na hora e não lê nada da página. É o único jeito de gravar o console desde o primeiro instante nas abas controladas. Sem nenhuma aba sob controle, ele nem é registrado.
 - O botão da extensão mostra as abas sob controle, solta qualquer uma e tem **Pausar controle**, que corta tudo na hora.
 - Qualquer programa rodando com o seu usuário consegue falar com o socket. É o mesmo nível de confiança do Claude in Chrome.
@@ -73,3 +75,7 @@ npm run remove  # desfaz o npm run setup
 ```
 
 Mudou algo em `bridge/`? Rode `npm run setup` de novo: o Firefox usa a cópia em `~/.kamurafox`.
+
+## Licença
+
+GPL-3.0. A fonte Fredoka segue a SIL Open Font License (`extension/fonts/Fredoka-OFL.txt`). O visual está descrito em `docs/design.md`.

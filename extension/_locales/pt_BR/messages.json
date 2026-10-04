@@ -1,18 +1,58 @@
 {
-  "extName": { "message": "Kamurafox" },
-  "extDescription": { "message": "Deixa o Claude Code deste computador dirigir abas do Firefox: abrir, clicar, digitar, ler e tirar print. Não oficial, não é da Anthropic nem da Mozilla." },
-  "indicator": { "message": "Claude Code está dirigindo esta aba" },
-  "bridgeOn": { "message": "ponte ligada" },
-  "bridgeOff": { "message": "ponte desligada" },
-  "bridgeHint": { "message": "Rode o instalador na pasta do projeto: node install.js" },
-  "sessionsNone": { "message": "nenhuma sessão do Claude Code ligada" },
-  "sessionsOne": { "message": "1 sessão do Claude Code ligada" },
-  "sessionsMany": { "message": "$COUNT$ sessões do Claude Code ligadas", "placeholders": { "count": { "content": "$1" } } },
-  "tabsTitle": { "message": "Abas sob controle" },
-  "tabsNone": { "message": "Nenhuma agora." },
-  "release": { "message": "soltar" },
-  "adopted": { "message": "sua" },
-  "pause": { "message": "Pausar controle" },
-  "resume": { "message": "Retomar controle" },
-  "pausedNote": { "message": "Pausado: o Claude Code não mexe no Firefox." }
+  "extName": {
+    "message": "Kamurafox"
+  },
+  "extDescription": {
+    "message": "Deixa o Claude Code deste computador dirigir abas do Firefox: abrir, clicar, digitar, ler e tirar print. Não oficial, não é da Anthropic nem da Mozilla."
+  },
+  "indicator": {
+    "message": "Claude Code está dirigindo esta aba"
+  },
+  "bridgeOn": {
+    "message": "ponte ligada"
+  },
+  "bridgeOff": {
+    "message": "ponte desligada"
+  },
+  "bridgeHint": {
+    "message": "Rode o instalador na pasta do projeto: node install.js."
+  },
+  "sessionsNone": {
+    "message": "nenhuma sessão do Claude Code ligada"
+  },
+  "sessionsOne": {
+    "message": "1 sessão do Claude Code ligada"
+  },
+  "sessionsMany": {
+    "message": "$COUNT$ sessões do Claude Code ligadas",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "tabsTitle": {
+    "message": "Abas sob controle"
+  },
+  "tabsNone": {
+    "message": "Nenhuma agora. Peça algo ao Claude Code."
+  },
+  "release": {
+    "message": "soltar"
+  },
+  "adopted": {
+    "message": "sua"
+  },
+  "pause": {
+    "message": "Pausar controle"
+  },
+  "resume": {
+    "message": "Retomar controle"
+  },
+  "pausedNote": {
+    "message": "Pausado: o Claude Code não mexe no Firefox."
+  },
+  "pausedSticker": {
+    "message": "pausado"
+  }
 }

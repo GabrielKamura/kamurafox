@@ -6,16 +6,21 @@
   </head>
   <body>
     <header>
-      <img src="../icons/kamurafox.svg" alt="" width="26" height="26" />
+      <img src="../icons/kamurafox.svg" alt="" width="46" height="46" />
       <h1>Kamurafox</h1>
+      <span id="sticker" class="sticker" hidden></span>
     </header>
-    <p id="bridge" class="line"></p>
-    <p id="sessions" class="line"></p>
-    <p id="hint" class="hint" hidden></p>
-    <h2 id="tabs-title"></h2>
-    <ul id="tabs"></ul>
-    <button id="pause" type="button"></button>
-    <p id="paused-note" class="hint" hidden></p>
+    <div class="states">
+      <p id="bridge" class="status"></p>
+      <p id="sessions" class="status"></p>
+    </div>
+    <p id="hint" class="tip crit" hidden></p>
+    <section class="card">
+      <h2 id="tabs-title"></h2>
+      <ul id="tabs"></ul>
+    </section>
+    <button id="pause" class="btn gold" type="button"></button>
+    <p id="paused-note" class="tip" hidden></p>
     <script src="popup.js"></script>
   </body>
 </html>
