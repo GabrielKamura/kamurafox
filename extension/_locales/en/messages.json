@@ -1,0 +1,18 @@
+{
+  "extName": { "message": "Kamurafox" },
+  "extDescription": { "message": "Lets Claude Code on this computer drive Firefox tabs: open, click, type, read and take screenshots. Unofficial, not made by Anthropic or Mozilla." },
+  "indicator": { "message": "Claude Code is driving this tab" },
+  "bridgeOn": { "message": "bridge connected" },
+  "bridgeOff": { "message": "bridge offline" },
+  "bridgeHint": { "message": "Run the installer in the project folder: node install.js" },
+  "sessionsNone": { "message": "no Claude Code session connected" },
+  "sessionsOne": { "message": "1 Claude Code session connected" },
+  "sessionsMany": { "message": "$COUNT$ Claude Code sessions connected", "placeholders": { "count": { "content": "$1" } } },
+  "tabsTitle": { "message": "Tabs under control" },
+  "tabsNone": { "message": "None right now." },
+  "release": { "message": "release" },
+  "adopted": { "message": "yours" },
+  "pause": { "message": "Pause control" },
+  "resume": { "message": "Resume control" },
+  "pausedNote": { "message": "Paused: Claude Code cannot touch Firefox." }
+}

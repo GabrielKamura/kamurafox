@@ -1,0 +1,145 @@
+:root {
+  --ink: #221a16;
+  --paper: #fbf3e9;
+  --tail: #d97757;
+  --dim: #a8978b;
+  --rule: #3d302a;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  width: 300px;
+  margin: 0;
+  padding: 14px 14px 12px;
+  background: var(--ink);
+  color: var(--paper);
+  font: 12px/1.45 ui-monospace, Menlo, Consolas, monospace;
+}
+
+header {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  margin-bottom: 12px;
+}
+
+h1 {
+  margin: 0;
+  font: 600 15px/1 ui-monospace, Menlo, Consolas, monospace;
+  letter-spacing: 0.02em;
+}
+
+.line {
+  margin: 0 0 3px;
+  padding-left: 14px;
+  position: relative;
+}
+
+.line::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.48em;
+  width: 7px;
+  height: 7px;
+  background: var(--dim);
+}
+
+.line[data-state="on"]::before {
+  background: var(--tail);
+}
+
+.line[data-state="off"] {
+  color: var(--dim);
+}
+
+.hint {
+  margin: 8px 0 0;
+  padding: 7px 9px;
+  border-left: 2px solid var(--tail);
+  background: #2c221d;
+  color: var(--paper);
+  overflow-wrap: anywhere;
+}
+
+h2 {
+  margin: 14px 0 5px;
+  padding-top: 10px;
+  border-top: 1px solid var(--rule);
+  font: inherit;
+  color: var(--dim);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-size: 10.5px;
+}
+
+ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+li {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  padding: 3px 0;
+}
+
+li.empty {
+  color: var(--dim);
+}
+
+li .title {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+li .own {
+  color: var(--dim);
+}
+
+button {
+  font: inherit;
+  cursor: pointer;
+}
+
+li button {
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--tail);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+#pause {
+  width: 100%;
+  margin-top: 14px;
+  padding: 8px;
+  border: 1px solid var(--tail);
+  border-radius: 3px 10px 10px 10px;
+  background: none;
+  color: var(--paper);
+}
+
+#pause:hover {
+  background: #2c221d;
+}
+
+body.paused #pause {
+  background: var(--tail);
+  color: var(--ink);
+  font-weight: 600;
+}
+
+button:focus-visible {
+  outline: 2px solid var(--paper);
+  outline-offset: 2px;
+}

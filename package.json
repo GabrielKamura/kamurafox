@@ -1,0 +1,17 @@
+{
+  "name": "kamurafox",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Lets Claude Code drive Firefox: a WebExtension plus a local bridge (native messaging host and MCP server).",
+  "scripts": {
+    "setup": "node install.js",
+    "remove": "node install.js --uninstall",
+    "firefox": "web-ext run --source-dir extension --firefox /Applications/Firefox.app/Contents/MacOS/firefox --firefox-profile \"$HOME/.kamurafox/profile\" --profile-create-if-missing --keep-profile-changes --no-reload",
+    "lint": "web-ext lint --source-dir extension",
+    "build": "web-ext build --source-dir extension --artifacts-dir dist --overwrite-dest",
+    "test": "node test/e2e.mjs"
+  },
+  "devDependencies": {
+    "web-ext": "^10.7.0"
+  }
+}
